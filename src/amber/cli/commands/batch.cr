@@ -19,7 +19,6 @@ module Amber::CLI
       def run
         ensure_file_argument!
         yaml = YAML.parse_all(File.read(args.file))
-        # Loads an YAML Array
         yaml.each do |request|
           request.each do |action, data|
             action_type = action.to_s.downcase
@@ -30,7 +29,6 @@ module Amber::CLI
               templates.push(Template.new(name.to_s.downcase, ".", fields))
             end
             templates.each do |template|
-              puts template
               template.generate action_type
             end
           end
